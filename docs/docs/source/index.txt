@@ -1,0 +1,269 @@
+   #[1]Алфавитный указатель [2]Поиск
+
+   [3]speakerpy
+   ____________________
+     * [4]Speaker
+          + [5]Speaker.__init__()
+          + [6]Speaker._chunks_synthes()
+          + [7]Speaker._init_models()
+          + [8]Speaker._join_mp3()
+          + [9]Speaker._speak()
+          + [10]Speaker._synthesize_text()
+          + [11]Speaker._th_lock_speak
+          + [12]Speaker.speak()
+          + [13]Speaker.to_mp3()
+     * [14]SpeakerBase
+          + [15]SpeakerBase.__init__()
+          + [16]SpeakerBase._init_models()
+          + [17]SpeakerBase._speak()
+          + [18]SpeakerBase._synthesize_text()
+          + [19]SpeakerBase._th_lock_speak
+     * [20]SeleroText
+          + [21]SeleroText.IF_INIT
+          + [22]SeleroText.__init__()
+          + [23]SeleroText._max_chunk_symbols
+          + [24]SeleroText._normal()
+          + [25]SeleroText._nums_to_text()
+          + [26]SeleroText._punkt()
+          + [27]SeleroText._split_long_string()
+          + [28]SeleroText._transcription()
+          + [29]SeleroText.chunk()
+          + [30]SeleroText.download_dir
+          + [31]SeleroText.exclude_characters
+     * [32]nltk_remove_other_model_but_russian()
+
+   [33]speakerpy
+     *
+     * <no title>
+     * [34]Просмотреть исходный код страницы
+     __________________________________________________________________
+
+   class lib_speak.Speaker(model_id, language: Literal['ru', 'en'],
+          speaker: Literal['aidar', 'baya', 'kseniya', 'xenia', 'random'],
+          device='cpu')[35]
+
+        __init__(model_id, language: Literal['ru', 'en'], speaker:
+                Literal['aidar', 'baya', 'kseniya', 'xenia', 'random'],
+                device='cpu') → None[36]
+
+        _chunks_synthes(sl_text: [37]SeleroText, audio_dir: Path, speed:
+                float, sample_rate: int) → Generator[Path, None,
+                None][38]
+                Синтезировать куски текста и возвращать путь к
+                синтезированным файлам
+
+                sl_text: SeleroText, объект текста, разбитого на куски
+                audio_dir: pathlib.Path, путь до папки для сохранения
+                аудио speed: float, скорость синтеза (пример: 0.5 - в два
+                раза медленнее, 2 - в два раза быстрее) sample_rate: int,
+                частота дискретизации
+
+                return: Путь до синтезированного аудио файла
+
+        static _init_models(model_id: str, language: Literal['ru'] = 'ru',
+                device: Literal['cpu', 'cuda', 'ipu', 'xpu', 'mkldnn',
+                'opengl', 'opencl', 'ideep', 'hip', 've', 'fpga', 'ort',
+                'xla', 'lazy', 'vulkan', 'mps'] = 'cpu')[39]
+                Инициализация ИИ модели
+
+                model_id: Доступные модели
+                [40]https://github.com/snakers4/silero-models/blob/master/
+                models.yml
+
+        static _join_mp3(filenames: list[pathlib.Path], output_file:
+                Path)[41]
+                Объединить куски mp3 в единое mp3 файл
+
+                filenames : Список кусков файлов с MP3 output_file : Путь
+                куда сохранить единый MP3
+
+        _speak(th_name: int, text: str, audio: Tensor, sample_rate: int,
+                speed: float = 1.0)[42]
+                Озвучить текст
+
+              Параметры:
+
+                    # audio – Аудио
+                    # sample_rate – Частота
+                    # speed – Скорость воспроизведения [от 1.0 до 2.0]
+
+        _synthesize_text(text: str, sample_rate: int, put_accent: bool =
+                True, put_yo: bool = True) → Tensor[43]
+                Синтезировать текст
+
+        _th_lock_speak = <unlocked _thread.lock object>[44]
+                Для синхронизации потоков озвучки текста
+
+        speak(**kwargs)[45]
+
+        to_mp3(**kwargs)[46]
+
+   class lib_speak.SpeakerBase(model_id, language: Literal['ru', 'en'],
+          speaker: Literal['aidar', 'baya', 'kseniya', 'xenia', 'random'],
+          device='cpu')[47]
+
+        __init__(model_id, language: Literal['ru', 'en'], speaker:
+                Literal['aidar', 'baya', 'kseniya', 'xenia', 'random'],
+                device='cpu') → None[48]
+
+        static _init_models(model_id: str, language: Literal['ru'] = 'ru',
+                device: Literal['cpu', 'cuda', 'ipu', 'xpu', 'mkldnn',
+                'opengl', 'opencl', 'ideep', 'hip', 've', 'fpga', 'ort',
+                'xla', 'lazy', 'vulkan', 'mps'] = 'cpu')[49]
+                Инициализация ИИ модели
+
+                model_id: Доступные модели
+                [50]https://github.com/snakers4/silero-models/blob/master/
+                models.yml
+
+        _speak(th_name: int, text: str, audio: Tensor, sample_rate: int,
+                speed: float = 1.0)[51]
+                Озвучить текст
+
+              Параметры:
+
+                    # audio – Аудио
+                    # sample_rate – Частота
+                    # speed – Скорость воспроизведения [от 1.0 до 2.0]
+
+        _synthesize_text(text: str, sample_rate: int, put_accent: bool =
+                True, put_yo: bool = True) → Tensor[52]
+                Синтезировать текст
+
+        _th_lock_speak = <unlocked _thread.lock object>[53]
+                Для синхронизации потоков озвучки текста
+
+   class lib_sl_text.SeleroText(text: str, to_language:
+          Literal['ru'])[54]
+          Класс для хранения, и удобного использования текста, который вы
+          хотите синтезировать в голос
+
+        IF_INIT = False[55]
+                Флаг который используется для чтения модели nltk единожды
+
+        __init__(text: str, to_language: Literal['ru']) → None[56]
+                Преобразовать текст в подходящий формат.
+
+        _max_chunk_symbols = 1000[57]
+                Максимальное количество сиголов в куске текста. Если
+                больше, то это уже новый кусок
+
+        _normal() → str[58]
+                Преобразовать текст в подходящий формат для синтезаци
+
+                to_language: В какой язык сделать тралит
+
+        _nums_to_text() → str[59]
+                Преобразует числа в буквы: 1 -> один, 23 -> двадцать три
+
+        static _punkt(text: str) → Generator[str, None, None][60]
+                Разделения по предложениям
+
+        static _split_long_string(text: str, slice_length: int) →
+                Generator[str, None, None][61]
+                Поделить текст на части.
+
+              Параметры:
+
+                    # text – Текст
+                    # slice_length – Через сколько символов делить строку
+
+        _transcription() → str[62]
+                Транскрипция иностранного языка (Типо hello->хелоо)
+
+        chunk() → Generator[str, None, None][63]
+                Поделить текст на куски
+
+        download_dir =
+                PosixPath('/media/denis/130479d6-b6a6-45e3-b75b-f2c4b6c004
+                b52/MyProject/speakerpy/models/nltk_store')[64]
+                Путь для хранения моделей nltk
+
+        exclude_characters = '
+                \t\n\r\x0b\x0c!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~'[65]
+                Символы которые нужно исключать
+
+   lib_sl_text.nltk_remove_other_model_but_russian(directory: str |
+          Path)[66]
+          Удалить все языки кроме русского
+
+          directory: Путь к директорию в которой искать файлы
+     __________________________________________________________________
+
+   © Copyright .
+   Собрано при помощи [67]Sphinx с использованием [68]темы,
+   предоставленной [69]Read the Docs.
+
+Ссылки
+
+   Видимых ссылок:
+   1. ./genindex.html
+   2. ./search.html
+   3. ./index.html
+   4. ./index.html
+   5. ./index.html#lib_speak.Speaker.__init__
+   6. ./index.html#lib_speak.Speaker._chunks_synthes
+   7. ./index.html#lib_speak.Speaker._init_models
+   8. ./index.html#lib_speak.Speaker._join_mp3
+   9. ./index.html#lib_speak.Speaker._speak
+  10. ./index.html#lib_speak.Speaker._synthesize_text
+  11. ./index.html#lib_speak.Speaker._th_lock_speak
+  12. ./index.html#lib_speak.Speaker.speak
+  13. ./index.html#lib_speak.Speaker.to_mp3
+  14. ./index.html#lib_speak.SpeakerBase
+  15. ./index.html#lib_speak.SpeakerBase.__init__
+  16. ./index.html#lib_speak.SpeakerBase._init_models
+  17. ./index.html#lib_speak.SpeakerBase._speak
+  18. ./index.html#lib_speak.SpeakerBase._synthesize_text
+  19. ./index.html#lib_speak.SpeakerBase._th_lock_speak
+  20. ./index.html#lib_sl_text.SeleroText
+  21. ./index.html#lib_sl_text.SeleroText.IF_INIT
+  22. ./index.html#lib_sl_text.SeleroText.__init__
+  23. ./index.html#lib_sl_text.SeleroText._max_chunk_symbols
+  24. ./index.html#lib_sl_text.SeleroText._normal
+  25. ./index.html#lib_sl_text.SeleroText._nums_to_text
+  26. ./index.html#lib_sl_text.SeleroText._punkt
+  27. ./index.html#lib_sl_text.SeleroText._split_long_string
+  28. ./index.html#lib_sl_text.SeleroText._transcription
+  29. ./index.html#lib_sl_text.SeleroText.chunk
+  30. ./index.html#lib_sl_text.SeleroText.download_dir
+  31. ./index.html#lib_sl_text.SeleroText.exclude_characters
+  32. ./index.html#lib_sl_text.nltk_remove_other_model_but_russian
+  33. ./index.html
+  34. ./_sources/index.rst.txt
+  35. ./index.html#lib_speak.Speaker
+  36. ./index.html#lib_speak.Speaker.__init__
+  37. ./index.html#lib_sl_text.SeleroText
+  38. ./index.html#lib_speak.Speaker._chunks_synthes
+  39. ./index.html#lib_speak.Speaker._init_models
+  40. https://github.com/snakers4/silero-models/blob/master/models.yml
+  41. ./index.html#lib_speak.Speaker._join_mp3
+  42. ./index.html#lib_speak.Speaker._speak
+  43. ./index.html#lib_speak.Speaker._synthesize_text
+  44. ./index.html#lib_speak.Speaker._th_lock_speak
+  45. ./index.html#lib_speak.Speaker.speak
+  46. ./index.html#lib_speak.Speaker.to_mp3
+  47. ./index.html#lib_speak.SpeakerBase
+  48. ./index.html#lib_speak.SpeakerBase.__init__
+  49. ./index.html#lib_speak.SpeakerBase._init_models
+  50. https://github.com/snakers4/silero-models/blob/master/models.yml
+  51. ./index.html#lib_speak.SpeakerBase._speak
+  52. ./index.html#lib_speak.SpeakerBase._synthesize_text
+  53. ./index.html#lib_speak.SpeakerBase._th_lock_speak
+  54. ./index.html#lib_sl_text.SeleroText
+  55. ./index.html#lib_sl_text.SeleroText.IF_INIT
+  56. ./index.html#lib_sl_text.SeleroText.__init__
+  57. ./index.html#lib_sl_text.SeleroText._max_chunk_symbols
+  58. ./index.html#lib_sl_text.SeleroText._normal
+  59. ./index.html#lib_sl_text.SeleroText._nums_to_text
+  60. ./index.html#lib_sl_text.SeleroText._punkt
+  61. ./index.html#lib_sl_text.SeleroText._split_long_string
+  62. ./index.html#lib_sl_text.SeleroText._transcription
+  63. ./index.html#lib_sl_text.SeleroText.chunk
+  64. ./index.html#lib_sl_text.SeleroText.download_dir
+  65. ./index.html#lib_sl_text.SeleroText.exclude_characters
+  66. ./index.html#lib_sl_text.nltk_remove_other_model_but_russian
+  67. https://www.sphinx-doc.org/
+  68. https://github.com/readthedocs/sphinx_rtd_theme
+  69. https://readthedocs.org/
+

@@ -1,0 +1,12 @@
+venv
+.vagrant
+__pycache__/
+.mypy_cache
+dist
+latest_silero_models.yml
+mp3/*
+books/*
+test.py
+models
+.ipynb_checkpoints
+docs/docs/build

@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "speakerpy"
+version = "0.1.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+# silero = "^0.4.1"
+sounddevice = "^0.4.6"
+num2words = "^0.5.12"
+transliterate = "^1.10.2"
+soundfile = "^0.12.1"
+pydub = "^0.25.1"
+tqdm = "^4.65.0"
+nltk = "^3.8.1"
+numpy = "^1.24.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
