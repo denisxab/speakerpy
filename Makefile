@@ -1,10 +1,10 @@
 # Собрать контейнер
 docker-build:
-	docker build -t speakerpy .
+	docker build -t xable/speakerpy:latest .
 
 # Запустить контейнер
 docker-run:
-	docker run -it -v "$(PWD)/mp3:/app/mp3" -v "$(PWD)/books:/app/books" speakerpy
+	docker run -it -v "$(PWD)/mp3:/app/mp3" -v "$(PWD)/books:/app/books" --name speakerpy_c xable/speakerpy
 
 # Собрать документацию в Html
 doc_to_html:

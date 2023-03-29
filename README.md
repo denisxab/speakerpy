@@ -59,11 +59,17 @@ pip install speakerpy
 
 ## Установка и запуск через Docker
 
-Собрать образ(весит 8.07GB):
+Скачать образ
 
 ```bash
-make docker-build
+docker pull xable/speakerpy
 ```
+
+> Собрать образ(весит 8.27GB):
+>
+> ```bash
+> make docker-build
+> ```
 
 Запустить образ:
 

@@ -7,8 +7,7 @@ def main(sp: Speaker):
     # sp.speak(text, sample_rate=48000, speed=1.0)
 
     _file = (
-        pathlib.Path("__file__").parent.parent
-        / "test"
+        pathlib.Path(__file__).parent.parent
         / "books"
         / "shot Приключения Шерлока Холмса.txt"
     )
