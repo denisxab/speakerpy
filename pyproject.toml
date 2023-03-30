@@ -4,7 +4,6 @@ version = "0.1.2"
 description = "`SpeakerPy` - это Python-библиотека для синтеза речи, основанная на моделях Silero Text-to-Speech."
 authors = ["Denis Kustov <pro-progerkustov@yandex.ru>"]
 readme = "README.md"
-include = ["docs/docs/source/_static/logo315x318.png"]
 homepage = "https://github.com/denisxab/speakerpy"
 repository = "https://github.com/denisxab/speakerpy"
 keywords=[

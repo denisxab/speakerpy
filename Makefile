@@ -8,7 +8,7 @@ docker-run:
 
 # Собрать документацию в Html
 doc_to_html:
-	cd ./docs/docs; make html
+	cd ./docs; make html
 
 # Собрать документацию в TXT
 doc_to_txt:
