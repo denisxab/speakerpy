@@ -2,7 +2,7 @@
 
 В этой статье мы расскажем о проекте SpeakerPy, синтезаторе речи на Python, который использует преимущества моделей Silero Text-to-Speech. SpeakerPy позволяет легко преобразовывать текст в аудио, что делает его отличным инструментом для различных задач, таких как создание аудиокниг, озвучивание текстовых документов и подкастов.
 
-[Пример озвучки](./docs/docs/source/_static/out_example.txta92b8e65840ebf3629d9395779c1857e.mp3)
+[Пример озвучки](https://raw.githubusercontent.com/denisxab/speakerpy/main/docs/docs/source/_static/out_example.txta92b8e65840ebf3629d9395779c1857e.mp3)
 
 ## Введение
 
