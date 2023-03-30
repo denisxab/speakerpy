@@ -1,13 +1,33 @@
 [tool.poetry]
 name = "speakerpy"
-version = "0.1.0"
-description = ""
-authors = ["Your Name <you@example.com>"]
+version = "0.1.2"
+description = "`SpeakerPy` - это Python-библиотека для синтеза речи, основанная на моделях Silero Text-to-Speech."
+authors = ["Denis Kustov <pro-progerkustov@yandex.ru>"]
 readme = "README.md"
+include = ["docs/docs/source/_static/logo315x318.png"]
+homepage = "https://github.com/denisxab/speakerpy"
+repository = "https://github.com/denisxab/speakerpy"
+keywords=[
+    "синтез речи"
+    ,"text-to-speech"
+    ,"озвучивание текста"
+    ,"python"
+    ,"Silero"
+    ,"TTS"
+    ,"аудио"
+    ,"голос"
+    ,"синтезатор голоса"
+    ,"чтение текста"
+    ,"оффлайн TTS"
+    ,"мультиязычный TTS"
+    ,"преобразование текста в речь"
+    ,"генерация речи"
+    ,"аудиокниги"
+]
 
 [tool.poetry.dependencies]
 python = "^3.10"
-# silero = "^0.4.1"
+silero = "^0.4.1"
 sounddevice = "^0.4.6"
 num2words = "^0.5.12"
 transliterate = "^1.10.2"
