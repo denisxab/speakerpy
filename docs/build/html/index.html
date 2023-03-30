@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="ru" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>&lt;no title&gt; &mdash; документация speakerpy </title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/translations.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Алфавитный указатель" href="genindex.html" />
+    <link rel="search" title="Поиск" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="#" class="icon icon-home">
+            speakerpy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Поиск в документации" aria-label="Поиск в документации" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Меню навигации">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">Speaker</span></code></a><ul>
+<li><a class="reference internal" href="#lib_speak.Speaker.__init__"><code class="docutils literal notranslate"><span class="pre">Speaker.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#lib_speak.Speaker._chunks_synthes"><code class="docutils literal notranslate"><span class="pre">Speaker._chunks_synthes()</span></code></a></li>
+<li><a class="reference internal" href="#lib_speak.Speaker._init_models"><code class="docutils literal notranslate"><span class="pre">Speaker._init_models()</span></code></a></li>
+<li><a class="reference internal" href="#lib_speak.Speaker._join_mp3"><code class="docutils literal notranslate"><span class="pre">Speaker._join_mp3()</span></code></a></li>
+<li><a class="reference internal" href="#lib_speak.Speaker._speak"><code class="docutils literal notranslate"><span class="pre">Speaker._speak()</span></code></a></li>
+<li><a class="reference internal" href="#lib_speak.Speaker._synthesize_text"><code class="docutils literal notranslate"><span class="pre">Speaker._synthesize_text()</span></code></a></li>
+<li><a class="reference internal" href="#lib_speak.Speaker._th_lock_speak"><code class="docutils literal notranslate"><span class="pre">Speaker._th_lock_speak</span></code></a></li>
+<li><a class="reference internal" href="#lib_speak.Speaker.speak"><code class="docutils literal notranslate"><span class="pre">Speaker.speak()</span></code></a></li>
+<li><a class="reference internal" href="#lib_speak.Speaker.to_mp3"><code class="docutils literal notranslate"><span class="pre">Speaker.to_mp3()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#lib_speak.SpeakerBase"><code class="docutils literal notranslate"><span class="pre">SpeakerBase</span></code></a><ul>
+<li><a class="reference internal" href="#lib_speak.SpeakerBase.__init__"><code class="docutils literal notranslate"><span class="pre">SpeakerBase.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#lib_speak.SpeakerBase._init_models"><code class="docutils literal notranslate"><span class="pre">SpeakerBase._init_models()</span></code></a></li>
+<li><a class="reference internal" href="#lib_speak.SpeakerBase._speak"><code class="docutils literal notranslate"><span class="pre">SpeakerBase._speak()</span></code></a></li>
+<li><a class="reference internal" href="#lib_speak.SpeakerBase._synthesize_text"><code class="docutils literal notranslate"><span class="pre">SpeakerBase._synthesize_text()</span></code></a></li>
+<li><a class="reference internal" href="#lib_speak.SpeakerBase._th_lock_speak"><code class="docutils literal notranslate"><span class="pre">SpeakerBase._th_lock_speak</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#lib_sl_text.SeleroText"><code class="docutils literal notranslate"><span class="pre">SeleroText</span></code></a><ul>
+<li><a class="reference internal" href="#lib_sl_text.SeleroText.IF_INIT"><code class="docutils literal notranslate"><span class="pre">SeleroText.IF_INIT</span></code></a></li>
+<li><a class="reference internal" href="#lib_sl_text.SeleroText.__init__"><code class="docutils literal notranslate"><span class="pre">SeleroText.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#lib_sl_text.SeleroText._max_chunk_symbols"><code class="docutils literal notranslate"><span class="pre">SeleroText._max_chunk_symbols</span></code></a></li>
+<li><a class="reference internal" href="#lib_sl_text.SeleroText._normal"><code class="docutils literal notranslate"><span class="pre">SeleroText._normal()</span></code></a></li>
+<li><a class="reference internal" href="#lib_sl_text.SeleroText._nums_to_text"><code class="docutils literal notranslate"><span class="pre">SeleroText._nums_to_text()</span></code></a></li>
+<li><a class="reference internal" href="#lib_sl_text.SeleroText._punkt"><code class="docutils literal notranslate"><span class="pre">SeleroText._punkt()</span></code></a></li>
+<li><a class="reference internal" href="#lib_sl_text.SeleroText._split_long_string"><code class="docutils literal notranslate"><span class="pre">SeleroText._split_long_string()</span></code></a></li>
+<li><a class="reference internal" href="#lib_sl_text.SeleroText._transcription"><code class="docutils literal notranslate"><span class="pre">SeleroText._transcription()</span></code></a></li>
+<li><a class="reference internal" href="#lib_sl_text.SeleroText.chunk"><code class="docutils literal notranslate"><span class="pre">SeleroText.chunk()</span></code></a></li>
+<li><a class="reference internal" href="#lib_sl_text.SeleroText.download_dir"><code class="docutils literal notranslate"><span class="pre">SeleroText.download_dir</span></code></a></li>
+<li><a class="reference internal" href="#lib_sl_text.SeleroText.exclude_characters"><code class="docutils literal notranslate"><span class="pre">SeleroText.exclude_characters</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#lib_sl_text.nltk_remove_other_model_but_russian"><code class="docutils literal notranslate"><span class="pre">nltk_remove_other_model_but_russian()</span></code></a></li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Меню навигации для мобильных устройств" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">speakerpy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Навигация по страницам">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">&lt;no title&gt;</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.rst.txt" rel="nofollow"> Просмотреть исходный код страницы</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="toctree-wrapper compound">
+</div>
+<span class="target" id="module-lib_speak"></span><dl class="py class">
+<dt class="sig sig-object py" id="lib_speak.Speaker">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lib_speak.</span></span><span class="sig-name descname"><span class="pre">Speaker</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">language</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'ru'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'en'</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">speaker</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'aidar'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'baya'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'kseniya'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'xenia'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'random'</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cpu'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lib_speak.Speaker" title="Ссылка на это определение"></a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="lib_speak.Speaker.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">language</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'ru'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'en'</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">speaker</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'aidar'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'baya'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'kseniya'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'xenia'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'random'</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cpu'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#lib_speak.Speaker.__init__" title="Ссылка на это определение"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lib_speak.Speaker._chunks_synthes">
+<span class="sig-name descname"><span class="pre">_chunks_synthes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sl_text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#lib_sl_text.SeleroText" title="lib_sl_text.SeleroText"><span class="pre">SeleroText</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">audio_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">speed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_rate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Generator</span><span class="p"><span class="pre">[</span></span><span class="pre">Path</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#lib_speak.Speaker._chunks_synthes" title="Ссылка на это определение"></a></dt>
+<dd><p>Синтезировать куски текста и возвращать путь к синтезированным файлам</p>
+<p>sl_text: SeleroText, объект текста, разбитого на куски
+audio_dir: pathlib.Path, путь до папки для сохранения аудио
+speed: float, скорость синтеза (пример: 0.5 - в два раза медленнее, 2 - в два раза быстрее)
+sample_rate: int, частота дискретизации</p>
+<p>return: Путь до синтезированного аудио файла</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lib_speak.Speaker._init_models">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">_init_models</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">language</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'ru'</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'ru'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'cpu'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'cuda'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'ipu'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'xpu'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'mkldnn'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'opengl'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'opencl'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'ideep'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'hip'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'ve'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'fpga'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'ort'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'xla'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'lazy'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'vulkan'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'mps'</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'cpu'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lib_speak.Speaker._init_models" title="Ссылка на это определение"></a></dt>
+<dd><p>Инициализация ИИ модели</p>
+<p>model_id: Доступные модели <a class="reference external" href="https://github.com/snakers4/silero-models/blob/master/models.yml">https://github.com/snakers4/silero-models/blob/master/models.yml</a></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lib_speak.Speaker._join_mp3">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">_join_mp3</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filenames</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">pathlib.Path</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lib_speak.Speaker._join_mp3" title="Ссылка на это определение"></a></dt>
+<dd><p>Объединить куски mp3 в единое mp3 файл</p>
+<p>filenames   : Список кусков файлов с MP3
+output_file : Путь куда сохранить единый MP3</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lib_speak.Speaker._speak">
+<span class="sig-name descname"><span class="pre">_speak</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">th_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">audio</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_rate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">speed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lib_speak.Speaker._speak" title="Ссылка на это определение"></a></dt>
+<dd><p>Озвучить текст</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>audio</strong> – Аудио</p></li>
+<li><p><strong>sample_rate</strong> – Частота</p></li>
+<li><p><strong>speed</strong> – Скорость воспроизведения [от 1.0 до 2.0]</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lib_speak.Speaker._synthesize_text">
+<span class="sig-name descname"><span class="pre">_synthesize_text</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_rate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">put_accent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">put_yo</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="headerlink" href="#lib_speak.Speaker._synthesize_text" title="Ссылка на это определение"></a></dt>
+<dd><p>Синтезировать текст</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lib_speak.Speaker._th_lock_speak">
+<span class="sig-name descname"><span class="pre">_th_lock_speak</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;unlocked</span> <span class="pre">_thread.lock</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#lib_speak.Speaker._th_lock_speak" title="Ссылка на это определение"></a></dt>
+<dd><p>Для синхронизации потоков озвучки текста</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lib_speak.Speaker.speak">
+<span class="sig-name descname"><span class="pre">speak</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lib_speak.Speaker.speak" title="Ссылка на это определение"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lib_speak.Speaker.to_mp3">
+<span class="sig-name descname"><span class="pre">to_mp3</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lib_speak.Speaker.to_mp3" title="Ссылка на это определение"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="lib_speak.SpeakerBase">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lib_speak.</span></span><span class="sig-name descname"><span class="pre">SpeakerBase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">language</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'ru'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'en'</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">speaker</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'aidar'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'baya'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'kseniya'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'xenia'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'random'</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cpu'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lib_speak.SpeakerBase" title="Ссылка на это определение"></a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="lib_speak.SpeakerBase.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">language</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'ru'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'en'</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">speaker</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'aidar'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'baya'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'kseniya'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'xenia'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'random'</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cpu'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#lib_speak.SpeakerBase.__init__" title="Ссылка на это определение"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lib_speak.SpeakerBase._init_models">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">_init_models</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">language</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'ru'</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'ru'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'cpu'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'cuda'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'ipu'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'xpu'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'mkldnn'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'opengl'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'opencl'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'ideep'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'hip'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'ve'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'fpga'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'ort'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'xla'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'lazy'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'vulkan'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'mps'</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'cpu'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lib_speak.SpeakerBase._init_models" title="Ссылка на это определение"></a></dt>
+<dd><p>Инициализация ИИ модели</p>
+<p>model_id: Доступные модели <a class="reference external" href="https://github.com/snakers4/silero-models/blob/master/models.yml">https://github.com/snakers4/silero-models/blob/master/models.yml</a></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lib_speak.SpeakerBase._speak">
+<span class="sig-name descname"><span class="pre">_speak</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">th_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">audio</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_rate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">speed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lib_speak.SpeakerBase._speak" title="Ссылка на это определение"></a></dt>
+<dd><p>Озвучить текст</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>audio</strong> – Аудио</p></li>
+<li><p><strong>sample_rate</strong> – Частота</p></li>
+<li><p><strong>speed</strong> – Скорость воспроизведения [от 1.0 до 2.0]</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lib_speak.SpeakerBase._synthesize_text">
+<span class="sig-name descname"><span class="pre">_synthesize_text</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_rate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">put_accent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">put_yo</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="headerlink" href="#lib_speak.SpeakerBase._synthesize_text" title="Ссылка на это определение"></a></dt>
+<dd><p>Синтезировать текст</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lib_speak.SpeakerBase._th_lock_speak">
+<span class="sig-name descname"><span class="pre">_th_lock_speak</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;unlocked</span> <span class="pre">_thread.lock</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#lib_speak.SpeakerBase._th_lock_speak" title="Ссылка на это определение"></a></dt>
+<dd><p>Для синхронизации потоков озвучки текста</p>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-lib_sl_text"></span><dl class="py class">
+<dt class="sig sig-object py" id="lib_sl_text.SeleroText">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lib_sl_text.</span></span><span class="sig-name descname"><span class="pre">SeleroText</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">to_language</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'ru'</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lib_sl_text.SeleroText" title="Ссылка на это определение"></a></dt>
+<dd><p>Класс для хранения, и удобного использования текста,
+который вы хотите синтезировать в голос</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lib_sl_text.SeleroText.IF_INIT">
+<span class="sig-name descname"><span class="pre">IF_INIT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#lib_sl_text.SeleroText.IF_INIT" title="Ссылка на это определение"></a></dt>
+<dd><p>Флаг который используется для чтения модели nltk единожды</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lib_sl_text.SeleroText.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">to_language</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'ru'</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#lib_sl_text.SeleroText.__init__" title="Ссылка на это определение"></a></dt>
+<dd><p>Преобразовать текст в подходящий формат.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lib_sl_text.SeleroText._max_chunk_symbols">
+<span class="sig-name descname"><span class="pre">_max_chunk_symbols</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1000</span></em><a class="headerlink" href="#lib_sl_text.SeleroText._max_chunk_symbols" title="Ссылка на это определение"></a></dt>
+<dd><p>Максимальное количество сиголов в куске текста. Если больше, то это уже новый кусок</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lib_sl_text.SeleroText._normal">
+<span class="sig-name descname"><span class="pre">_normal</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#lib_sl_text.SeleroText._normal" title="Ссылка на это определение"></a></dt>
+<dd><p>Преобразовать текст в подходящий формат для синтезаци</p>
+<p>to_language: В какой язык сделать тралит</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lib_sl_text.SeleroText._nums_to_text">
+<span class="sig-name descname"><span class="pre">_nums_to_text</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#lib_sl_text.SeleroText._nums_to_text" title="Ссылка на это определение"></a></dt>
+<dd><p>Преобразует числа в буквы: 1 -&gt; один, 23 -&gt; двадцать три</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lib_sl_text.SeleroText._punkt">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">_punkt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Generator</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#lib_sl_text.SeleroText._punkt" title="Ссылка на это определение"></a></dt>
+<dd><p>Разделения по предложениям</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lib_sl_text.SeleroText._split_long_string">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">_split_long_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slice_length</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Generator</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#lib_sl_text.SeleroText._split_long_string" title="Ссылка на это определение"></a></dt>
+<dd><p>Поделить текст на части.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>text</strong> – Текст</p></li>
+<li><p><strong>slice_length</strong> – Через сколько символов делить строку</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lib_sl_text.SeleroText._transcription">
+<span class="sig-name descname"><span class="pre">_transcription</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#lib_sl_text.SeleroText._transcription" title="Ссылка на это определение"></a></dt>
+<dd><p>Транскрипция иностранного языка (Типо hello-&gt;хелоо)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lib_sl_text.SeleroText.chunk">
+<span class="sig-name descname"><span class="pre">chunk</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Generator</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#lib_sl_text.SeleroText.chunk" title="Ссылка на это определение"></a></dt>
+<dd><p>Поделить текст на куски</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lib_sl_text.SeleroText.download_dir">
+<span class="sig-name descname"><span class="pre">download_dir</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">PosixPath('/media/denis/130479d6-b6a6-45e3-b75b-f2c4b6c004b52/MyProject/speakerpy/models/nltk_store')</span></em><a class="headerlink" href="#lib_sl_text.SeleroText.download_dir" title="Ссылка на это определение"></a></dt>
+<dd><p>Путь для хранения моделей nltk</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lib_sl_text.SeleroText.exclude_characters">
+<span class="sig-name descname"><span class="pre">exclude_characters</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'</span> <span class="pre">\t\n\r\x0b\x0c!&quot;#$%&amp;\'()*+,-./:;&lt;=&gt;?&#64;[\\]^_`{|}~'</span></em><a class="headerlink" href="#lib_sl_text.SeleroText.exclude_characters" title="Ссылка на это определение"></a></dt>
+<dd><p>Символы которые нужно исключать</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="lib_sl_text.nltk_remove_other_model_but_russian">
+<span class="sig-prename descclassname"><span class="pre">lib_sl_text.</span></span><span class="sig-name descname"><span class="pre">nltk_remove_other_model_but_russian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directory</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lib_sl_text.nltk_remove_other_model_but_russian" title="Ссылка на это определение"></a></dt>
+<dd><p>Удалить все языки кроме русского</p>
+<p>directory: Путь к директорию в которой искать файлы</p>
+</dd></dl>
+
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Собрано при помощи <a href="https://www.sphinx-doc.org/">Sphinx</a> с использованием
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">темы,</a>
+    предоставленной <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

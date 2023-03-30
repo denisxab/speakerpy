@@ -1,7 +1,7 @@
 import sys
 import pathlib
 
-BASE_DIR = pathlib.Path(__file__).parent.parent.parent.parent
+BASE_DIR = pathlib.Path(__file__).parent.parent.parent
 project = BASE_DIR.name
 
 # Добавляем проект с модулями в пути Python

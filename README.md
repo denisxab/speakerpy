@@ -2,7 +2,7 @@
 
 `SpeakerPy` - это Python-библиотека для синтеза речи, основанная на моделях Silero Text-to-Speech.
 
-![logo](https://raw.githubusercontent.com/denisxab/speakerpy/main/docs/docs/source/_static/logo315x318.png)
+![logo](https://raw.githubusercontent.com/denisxab/speakerpy/main/docs/source/_static/logo315x318.png)
 
 ## Возможные сферы применения SpeakerPy
 
